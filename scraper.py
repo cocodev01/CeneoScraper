@@ -36,7 +36,6 @@ while url:
             dislike = get_element(opinion,"button.vote-no > span")
             publish_date = get_element(opinion,"span.user-post__published > time:nth-child(1)","datetime")
             purchase_date = get_element(opinion,"span.user-post__published > time:nth-child(2)","datetime")
-
             single_opinion = {
                 "opinion_id": opinion_id,
                 "author": author,
@@ -53,12 +52,11 @@ while url:
             all_opinions.append(single_opinion)
         try:
             page = get_element(page_dom, "a.pagination__next","href")
-            print(page)
             url = "https://ceneo.pl" + page
         except TypeError:
             url = None
-        # print(url)
-        if len(opinions) ==0:
+        print(url)
+        if len(opinions) == 0:
             with open(f"./test.html", "w",encoding="UTF-8") as hf:
                 hf.writelines(response.text)
 if len(all_opinions) > 0:
